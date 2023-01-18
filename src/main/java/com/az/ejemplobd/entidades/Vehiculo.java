@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 @Table(name = "vehiculos")
 public class Vehiculo {
 
+    public Vehiculo() {
+    }
+
     public Vehiculo(String placas, String color, String marca, String modelo, Double kilometraje, LocalDateTime fechaIngreso, LocalDateTime fechaSalida) {
         this.placas = placas;
         this.color = color;
