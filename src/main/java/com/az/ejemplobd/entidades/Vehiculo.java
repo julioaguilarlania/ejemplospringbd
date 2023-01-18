@@ -2,11 +2,14 @@ package com.az.ejemplobd.entidades;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "vehiculos")
 public class Vehiculo {
 
+    static DateTimeFormatter dtf =
+            DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
     public Vehiculo() {
     }
 
@@ -81,6 +84,13 @@ public class Vehiculo {
         return fechaIngreso;
     }
 
+    public String getFechaIngresoTexto() {
+        if (this.fechaIngreso != null)
+            return dtf.format(this.fechaIngreso);
+        else
+            return "";
+    }
+
     public void setFechaIngreso(LocalDateTime fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
@@ -91,5 +101,12 @@ public class Vehiculo {
 
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
+    }
+
+    public String getFechaSalidaTexto() {
+        if (this.fechaSalida != null)
+            return dtf.format(fechaSalida);
+        else
+            return "";
     }
 }

@@ -29,6 +29,8 @@
                         <th scope="col">Marca</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Kilometraje</th>
+                        <th scope="col">Ingreso</th>
+                        <th scope="col">Salida</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +42,8 @@
                             <td>${v.marca}</td>
                             <td>${v.modelo}</td>
                             <td>${v.kilometraje}</td>
+                            <td>${v.fechaIngresoTexto}</td>
+                            <td>${v.fechaSalidaTexto}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
