@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Vehiculo {
 
     static DateTimeFormatter dtf =
-            DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm");
+            DateTimeFormatter.ofPattern("dd-MMMM-yyyy HH:mm");
     public Vehiculo() {
     }
 
