@@ -40,4 +40,30 @@ public class ControladorVehiculos {
             mav.addObject("vehiculo", v.get());
         return mav;
     }
+
+    @RequestMapping("forma_nuevo")
+    public String mostrarFormularioCaptura() {
+        LOGGER.debug("forma Captura()");
+        return "capturaNuevo";
+    }
+
+    @RequestMapping(value="guardar")
+    public ModelAndView guardarNuevo(Vehiculo v)
+    {
+        LOGGER.debug("guardar Vehiculo()");
+        ModelAndView mav = new ModelAndView("listaVehiculos");
+        try {
+            repoVehiculos.save(v);
+            mav.addObject("mensaje", "Se guardo el vehiculo");
+            mav.addObject("vehiculos", repoVehiculos.findAll());
+            LOGGER.trace("Se guardo el vehiculo");
+        } catch(IllegalArgumentException iae) {
+            mav.setViewName("capturaNuevo");
+            mav.addObject("error", iae.getMessage());
+            mav.addObject("vehiculo", v);
+            LOGGER.warn("Error al guardar Vehiculo:", iae);
+        }
+
+        return mav;
+    }
 }
