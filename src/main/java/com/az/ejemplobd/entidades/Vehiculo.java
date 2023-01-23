@@ -1,5 +1,7 @@
 package com.az.ejemplobd.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -87,6 +89,7 @@ public class Vehiculo {
         return fechaIngreso;
     }
 
+    @JsonIgnore
     public String getFechaIngresoTexto() {
         if (this.fechaIngreso != null)
             return dtf.format(this.fechaIngreso);
@@ -114,6 +117,7 @@ public class Vehiculo {
         this.fechaSalida = fechaSalida;
     }
 
+    @JsonIgnore
     public String getFechaSalidaTexto() {
         if (this.fechaSalida != null)
             return dtf.format(fechaSalida);
