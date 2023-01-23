@@ -5,8 +5,7 @@ import com.az.ejemplobd.repositorios.RepositorioVehiculos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -22,13 +21,28 @@ public class ControladorVehiculos {
         this.repoVehiculos = repoVehiculos;
     }
 
-    @RequestMapping("vehiculos")
+    @RequestMapping("listaVehiculos")
     public ModelAndView getVehiculos() {
         LOGGER.debug("vehiculos()");
         ModelAndView mav = new ModelAndView("listaVehiculos");
         List<Vehiculo> vehiculos = this.repoVehiculos.findAll();
         mav.addObject("vehiculos", vehiculos);
         return mav;
+    }
+
+    //@RequestMapping(value="vehiculos", method = RequestMethod.GET)
+    @GetMapping("vehiculos")
+    @ResponseBody
+    public List<Vehiculo> getTodosVehiculos() {
+        LOGGER.debug("GET vehiculos");
+        return this.repoVehiculos.findAll();
+    }
+
+    @GetMapping("vehiculos/{placas}")
+    @ResponseBody
+    public Optional<Vehiculo> getPorPlacas(@PathVariable("placas") String p) {
+        LOGGER.debug("GET vehiculos/id");
+        return this.repoVehiculos.findById(p);
     }
 
     @RequestMapping(value = "buscar", params = "placas")
